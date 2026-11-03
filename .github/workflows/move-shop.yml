@@ -1,0 +1,18 @@
+name: Move shop to tienda
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  move:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Move shop page to tienda/index.html
+        run: |
+          mkdir -p tienda
+          git mv yanina.html tienda/index.html
+          git config user.name "13enji-ovo"
+          git config user.email "13enji-ovo@users.noreply.github.com"
+          git commit -m "Move shop to /tienda/ (yanina.html -> tienda/index.html)"
+          git push
