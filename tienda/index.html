@@ -21,7 +21,8 @@
         --shadow:0 10px 30px rgba(214,51,127,.16);
       }
       *{box-sizing:border-box;}
-      html{scroll-behavior:smooth;}
+      html{scroll-behavior:smooth;overflow-x:clip;}
+      body{overflow-x:clip;}
       body{
         margin:0;
         font-family:"Baloo 2",system-ui,sans-serif;
@@ -178,7 +179,7 @@
       .pola figcaption{font-family:"Caveat",cursive;font-size:25px;color:var(--magenta);text-align:center;padding-top:7px;}
 
       /* ---------- steps ---------- */
-      .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+      .steps{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:760px;margin:0 auto;}
       @media (max-width:860px){.steps{grid-template-columns:1fr;max-width:430px;margin:0 auto;}}
       .step{
         background:#fff;border:2.5px solid var(--card-border);border-radius:24px;
@@ -225,10 +226,12 @@
       .drawer{
         position:fixed;top:0;right:0;height:100dvh;width:min(420px,94vw);z-index:70;
         background:#fff5f9;box-shadow:-12px 0 34px rgba(160,40,90,.3);
-        transform:translateX(105%);transition:transform .25s ease;
+        transform:translateX(105%);visibility:hidden;
+        transition:transform .25s ease,visibility 0s linear .25s;
         display:flex;flex-direction:column;
       }
-      .drawer.open{transform:translateX(0);}
+      .drawer.open{transform:translateX(0);visibility:visible;transition:transform .25s ease;}
+      .drawer[hidden]{display:none;}
       .drawer-head{
         display:flex;align-items:center;justify-content:space-between;
         padding:18px 20px 12px;border-bottom:2px dashed #ffb9d6;
@@ -337,9 +340,9 @@
 
     <main id="top">
       <!-- floating decorations -->
-      <svg class="deco" style="--rot:-12deg;top:430px;left:-14px;" width="44" height="44" viewBox="0 0 24 24" fill="#f78fb8" aria-hidden="true"><path d="M12 20.7C6 16.6 3 13.2 3 9.6 3 7 5 5 7.7 5c1.7 0 3.4.9 4.3 2.4C12.9 5.9 14.6 5 16.3 5 19 5 21 7 21 9.6c0 3.6-3 7-9 11.1z"/></svg>
-      <svg class="deco" style="--rot:10deg;top:640px;right:-10px;animation-delay:1.2s;" width="36" height="36" viewBox="0 0 24 24" fill="#ffd166" aria-hidden="true"><path d="M12 2.5l2.9 6.6 7.1.6-5.4 4.7 1.7 7L12 17.7l-6.3 3.7 1.7-7L2 9.7l7.1-.6z"/></svg>
-      <svg class="deco" style="--rot:8deg;top:1250px;left:-12px;animation-delay:.6s;" width="34" height="34" viewBox="0 0 24 24" fill="#f24e9c" aria-hidden="true"><path d="M12 2l1.9 7.4L21.5 12l-7.6 2.6L12 22l-1.9-7.4L2.5 12l7.6-2.6z"/></svg>
+      <svg class="deco" style="--rot:-12deg;top:430px;left:0px;" width="44" height="44" viewBox="0 0 24 24" fill="#f78fb8" aria-hidden="true"><path d="M12 20.7C6 16.6 3 13.2 3 9.6 3 7 5 5 7.7 5c1.7 0 3.4.9 4.3 2.4C12.9 5.9 14.6 5 16.3 5 19 5 21 7 21 9.6c0 3.6-3 7-9 11.1z"/></svg>
+      <svg class="deco" style="--rot:10deg;top:640px;right:0px;animation-delay:1.2s;" width="36" height="36" viewBox="0 0 24 24" fill="#ffd166" aria-hidden="true"><path d="M12 2.5l2.9 6.6 7.1.6-5.4 4.7 1.7 7L12 17.7l-6.3 3.7 1.7-7L2 9.7l7.1-.6z"/></svg>
+      <svg class="deco" style="--rot:8deg;top:1250px;left:0px;animation-delay:.6s;" width="34" height="34" viewBox="0 0 24 24" fill="#f24e9c" aria-hidden="true"><path d="M12 2l1.9 7.4L21.5 12l-7.6 2.6L12 22l-1.9-7.4L2.5 12l7.6-2.6z"/></svg>
 
       <!-- hero: official banner -->
       <div class="hero">
@@ -410,7 +413,7 @@
       <section aria-label="Cómo comprar">
         <div class="sec-head">
           <h2 class="sec-title" data-i18n="howTitle">¿Cómo comprar?</h2>
-          <p class="sec-sub" data-i18n="howSub">en tres pasitos ♡</p>
+          <p class="sec-sub" data-i18n="howSub">en dos pasitos ♡</p>
         </div>
         <div class="steps">
           <div class="step">
@@ -421,12 +424,7 @@
           <div class="step">
             <div class="step-num">2</div>
             <h3 data-i18n="step2Title">Confirma por WhatsApp</h3>
-            <p data-i18n="step2Desc">Escanea el código QR, envíanos tu pedido y cuéntanos el modelo de tu iPhone. Confirmamos disponibilidad y precio.</p>
-          </div>
-          <div class="step">
-            <div class="step-num">3</div>
-            <h3 data-i18n="step3Title">Compra con Lolobuy</h3>
-            <p data-i18n="step3Desc">Completa tu compra con nuestro enlace oficial de Lolobuy y recibe tu funda en la puerta de tu casa.</p>
+            <p data-i18n="step2Desc">Envíanos tu pedido por WhatsApp y cuéntanos el modelo de tu iPhone. Confirmamos modelo, disponibilidad y precio, y pagas con tarjeta local.</p>
           </div>
         </div>
       </section>
@@ -444,8 +442,7 @@
             <h3 data-i18n="contactHead">Estamos para ayudarte ♡</h3>
             <p data-i18n="contactDesc">Escanea el código con la cámara de tu celular y conversa con nosotras por WhatsApp: precios, modelos disponibles y cómo hacer tu pedido.</p>
             <div class="contact-btns">
-              <a class="btn btn-hot" href="https://m.lolobuy.com/index?inviteCode=3smqb" target="_blank" rel="noopener" data-i18n="buyLolobuy">Comprar en Lolobuy</a>
-              <a class="btn btn-white" href="#coleccion" data-i18n="keepBrowsing">Seguir explorando</a>
+              <a class="btn btn-hot" href="#coleccion" data-i18n="keepBrowsing">Seguir explorando</a>
             </div>
             <div class="social-links">
               <p class="follow-label" data-i18n="followUs">Síguenos ♡</p>
@@ -485,7 +482,7 @@
 
     <!-- cart drawer -->
     <div class="overlay" id="overlay"></div>
-    <aside class="drawer" id="cartDrawer" aria-label="Carrito de compras" aria-hidden="true">
+    <aside class="drawer" id="cartDrawer" aria-label="Carrito de compras" aria-hidden="true" hidden>
       <div class="drawer-head">
         <h2 data-i18n="cartTitle">Tu carrito ♡</h2>
         <button class="icon-btn" id="closeCart" aria-label="Cerrar el carrito">
@@ -495,12 +492,15 @@
       <div class="drawer-items" id="cartItems"></div>
       <div class="drawer-foot" id="cartFoot" hidden>
         <div class="row"><span data-i18n="cartTotal">Total de productos</span><span id="cartTotalQty">0</span></div>
+        <button class="btn btn-hot" id="checkoutWhats">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          <span data-i18n="checkoutWhats">Confirmar pedido por WhatsApp</span>
+        </button>
         <button class="btn btn-white" id="copyOrder">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
           <span data-i18n="copyOrder">Copiar mi pedido</span>
         </button>
-        <a class="btn btn-hot" href="https://m.lolobuy.com/index?inviteCode=3smqb" target="_blank" rel="noopener" data-i18n="buyLolobuy">Comprar en Lolobuy</a>
-        <p class="foot-note" data-i18n="cartNote">Copia tu pedido y envíanoslo por WhatsApp (código QR abajo en la página) para confirmar modelo y precio. ♡</p>
+        <p class="foot-note" data-i18n="cartNote">Al confirmar, se abre WhatsApp con tu pedido ya escrito: solo cuéntanos el modelo de tu iPhone y confirmamos el precio. El pago es con tarjeta local. ♡</p>
       </div>
     </aside>
 
@@ -517,7 +517,6 @@
     <div class="toast" id="toast" role="status"></div>
 
     <script>
-      var LOLOBUY_URL = "https://m.lolobuy.com/index?inviteCode=3smqb";
       var currentLang = "es";
 
       var I18N = {
@@ -528,16 +527,15 @@
           colTitle:"¡Varios estilos para que elijas!", colSub:"tres diseños, tres personalidades ♡",
           tagMelody:"Súper linda ♡", tagRila:"Estilo único ♡", tagOsamu:"Combina con todo ♡",
           polaTitle:"Así se ven puestas", polaSub:"directo de nuestro póster oficial ♡",
-          howTitle:"¿Cómo comprar?", howSub:"en tres pasitos ♡",
+          howTitle:"¿Cómo comprar?", howSub:"en dos pasitos ♡",
           step1Title:"Elige tu funda", step1Desc:"Explora la colección, mira el detalle de cada diseño y agrega tus favoritas al carrito.",
-          step2Title:"Confirma por WhatsApp", step2Desc:"Escanea el código QR, envíanos tu pedido y cuéntanos el modelo de tu iPhone. Confirmamos disponibilidad y precio.",
-          step3Title:"Compra con Lolobuy", step3Desc:"Completa tu compra con nuestro enlace oficial de Lolobuy y recibe tu funda en la puerta de tu casa.",
+          step2Title:"Confirma por WhatsApp", step2Desc:"Envíanos tu pedido por WhatsApp y cuéntanos el modelo de tu iPhone. Confirmamos modelo, disponibilidad y precio, y pagas con tarjeta local.",
           contactTitle:"¡Escanea y consulta!", contactHead:"Estamos para ayudarte ♡",
           contactDesc:"Escanea el código con la cámara de tu celular y conversa con nosotras por WhatsApp: precios, modelos disponibles y cómo hacer tu pedido.",
-          buyLolobuy:"Comprar en Lolobuy", keepBrowsing:"Seguir explorando", followUs:"Síguenos ♡", linksPage:"Enlaces",
+          keepBrowsing:"Seguir explorando", followUs:"Síguenos ♡", linksPage:"Enlaces",
           footerLine:"Fundas para iPhone · Ecuador",
-          cartTitle:"Tu carrito ♡", cartTotal:"Total de productos", copyOrder:"Copiar mi pedido",
-          cartNote:"Copia tu pedido y envíanoslo por WhatsApp (código QR abajo en la página) para confirmar modelo y precio. ♡",
+          cartTitle:"Tu carrito ♡", cartTotal:"Total de productos", copyOrder:"Copiar mi pedido", checkoutWhats:"Confirmar pedido por WhatsApp", openingWhats:"Abriendo WhatsApp… ♡",
+          cartNote:"Al confirmar, se abre WhatsApp con tu pedido ya escrito: solo cuéntanos el modelo de tu iPhone y confirmamos el precio. El pago es con tarjeta local. ♡",
           priceChip:"Precio a consultar ♡", priceDetail:"Precio a consultar por WhatsApp ♡",
           viewDetail:"Ver detalle", add:"Agregar ♡", addToCart:"Agregar al carrito ♡", consultWhats:"Consultar por WhatsApp",
           remove:"Quitar", emptyCart:"Tu carrito está vacío… por ahora.<br/>Explora la colección y elige tu favorita ♡",
@@ -552,16 +550,15 @@
           colTitle:"多种风格，任你挑选！", colSub:"三种设计，三种个性 ♡",
           tagMelody:"超级可爱 ♡", tagRila:"独特风格 ♡", tagOsamu:"百搭款 ♡",
           polaTitle:"上手实拍效果", polaSub:"来自我们的官方海报 ♡",
-          howTitle:"如何购买？", howSub:"简单三步 ♡",
+          howTitle:"如何购买？", howSub:"简单两步 ♡",
           step1Title:"挑选你的手机壳", step1Desc:"浏览系列，查看每款设计的细节，把喜欢的加入购物车。",
-          step2Title:"通过 WhatsApp 确认", step2Desc:"扫描二维码，把订单发给我们，并告诉我们你的 iPhone 型号。我们会确认库存和价格。",
-          step3Title:"通过 Lolobuy 购买", step3Desc:"通过我们的 Lolobuy 官方链接完成购买，手机壳直接送到家门口。",
+          step2Title:"通过 WhatsApp 确认", step2Desc:"把订单通过 WhatsApp 发给我们，并告诉我们你的 iPhone 型号。我们确认型号、库存和价格，付款走当地银行卡。",
           contactTitle:"扫码咨询！", contactHead:"我们随时帮你 ♡",
           contactDesc:"用手机相机扫码，在 WhatsApp 上和我们聊：价格、可选型号、以及如何下单。",
-          buyLolobuy:"在 Lolobuy 购买", keepBrowsing:"继续逛逛", followUs:"关注我们 ♡", linksPage:"链接页",
+          keepBrowsing:"继续逛逛", followUs:"关注我们 ♡", linksPage:"链接页",
           footerLine:"iPhone 手机壳 · 厄瓜多尔",
-          cartTitle:"你的购物车 ♡", cartTotal:"商品总件数", copyOrder:"复制我的订单",
-          cartNote:"复制订单后通过 WhatsApp 发给我们（页面下方二维码），确认型号和价格。♡",
+          cartTitle:"你的购物车 ♡", cartTotal:"商品总件数", copyOrder:"复制我的订单", checkoutWhats:"通过 WhatsApp 确认订单", openingWhats:"正在打开 WhatsApp… ♡",
+          cartNote:"点确认后会打开 WhatsApp，订单已经自动写好：告诉我们你的 iPhone 型号，我们确认价格，付款走当地银行卡。♡",
           priceChip:"价格请咨询 ♡", priceDetail:"价格请通过 WhatsApp 咨询 ♡",
           viewDetail:"查看详情", add:"加入 ♡", addToCart:"加入购物车 ♡", consultWhats:"WhatsApp 咨询",
           remove:"移除", emptyCart:"购物车还是空的……<br/>去逛逛系列，挑一款你最喜欢的 ♡",
@@ -576,16 +573,15 @@
           colTitle:"So many styles to choose from!", colSub:"three designs, three personalities ♡",
           tagMelody:"Super cute ♡", tagRila:"Unique style ♡", tagOsamu:"Goes with everything ♡",
           polaTitle:"See them in real life", polaSub:"straight from our official poster ♡",
-          howTitle:"How to buy?", howSub:"in three easy steps ♡",
+          howTitle:"How to buy?", howSub:"in two easy steps ♡",
           step1Title:"Pick your case", step1Desc:"Browse the collection, check the details of each design and add your favorites to the cart.",
-          step2Title:"Confirm on WhatsApp", step2Desc:"Scan the QR code, send us your order and tell us your iPhone model. We'll confirm availability and price.",
-          step3Title:"Buy with Lolobuy", step3Desc:"Complete your purchase with our official Lolobuy link and get your case delivered to your door.",
+          step2Title:"Confirm on WhatsApp", step2Desc:"Send us your order on WhatsApp and tell us your iPhone model. We'll confirm the model, availability and price, and you pay by local card.",
           contactTitle:"Scan & ask us!", contactHead:"We're here to help ♡",
           contactDesc:"Scan the code with your phone camera and chat with us on WhatsApp: prices, available models and how to order.",
-          buyLolobuy:"Buy on Lolobuy", keepBrowsing:"Keep browsing", followUs:"Follow us ♡", linksPage:"Links",
+          keepBrowsing:"Keep browsing", followUs:"Follow us ♡", linksPage:"Links",
           footerLine:"iPhone cases · Ecuador",
-          cartTitle:"Your cart ♡", cartTotal:"Total items", copyOrder:"Copy my order",
-          cartNote:"Copy your order and send it to us on WhatsApp (QR code below on the page) to confirm model and price. ♡",
+          cartTitle:"Your cart ♡", cartTotal:"Total items", copyOrder:"Copy my order", checkoutWhats:"Confirm order on WhatsApp", openingWhats:"Opening WhatsApp… ♡",
+          cartNote:"When you confirm, WhatsApp opens with your order already written: just tell us your iPhone model and we'll confirm the price. Payment is by local card. ♡",
           priceChip:"Ask for price ♡", priceDetail:"Ask for price on WhatsApp ♡",
           viewDetail:"View details", add:"Add ♡", addToCart:"Add to cart ♡", consultWhats:"Ask on WhatsApp",
           remove:"Remove", emptyCart:"Your cart is empty… for now.<br/>Browse the collection and pick your favorite ♡",
@@ -650,7 +646,7 @@
       function openDetail(id){
         var p=productById(id); if(!p) return; detailId=id; detailQty=1;
         var feats=p.features.map(function(f){ return "<li>"+heartSvg()+"<span>"+f+"</span></li>"; }).join("");
-        $("#detailContent").innerHTML='<div><img class="modal-main-img" id="detailImg" src="'+p.img+'" alt="'+p.imgAlt+'" /><div class="thumbs"><button class="sel" data-thumb="'+p.img+'"><img src="'+p.img+'" alt="" /></button><button data-thumb="'+p.pola+'"><img src="'+p.pola+'" alt="" /></button></div></div><div class="modal-info"><span class="tag">'+p.tag+'</span><h2>'+p.name+'</h2><div class="price-row"><span class="price-chip">'+t("priceDetail")+'</span></div><p>'+p.desc+'</p><ul class="feat-list">'+feats+'</ul><div class="modal-actions"><span class="qty-picker"><button class="qty-btn" id="dqMinus">−</button><span class="qty-num" id="dqNum">1</span><button class="qty-btn" id="dqPlus">+</button></span><button class="btn btn-hot" id="dqAdd">'+t("addToCart")+'</button></div><div class="modal-actions"><a class="btn btn-white" href="'+LOLOBUY_URL+'" target="_blank" rel="noopener">'+t("buyLolobuy")+'</a><a class="btn btn-ghost" href="#contacto" id="dqWhats">'+t("consultWhats")+'</a></div></div>';
+        $("#detailContent").innerHTML='<div><img class="modal-main-img" id="detailImg" src="'+p.img+'" alt="'+p.imgAlt+'" /><div class="thumbs"><button class="sel" data-thumb="'+p.img+'"><img src="'+p.img+'" alt="" /></button><button data-thumb="'+p.pola+'"><img src="'+p.pola+'" alt="" /></button></div></div><div class="modal-info"><span class="tag">'+p.tag+'</span><h2>'+p.name+'</h2><div class="price-row"><span class="price-chip">'+t("priceDetail")+'</span></div><p>'+p.desc+'</p><ul class="feat-list">'+feats+'</ul><div class="modal-actions"><span class="qty-picker"><button class="qty-btn" id="dqMinus">−</button><span class="qty-num" id="dqNum">1</span><button class="qty-btn" id="dqPlus">+</button></span><button class="btn btn-hot" id="dqAdd">'+t("addToCart")+'</button></div><div class="modal-actions"><a class="btn btn-white" href="#contacto" id="dqWhats">'+t("consultWhats")+'</a></div></div>';
         $("#detailModal").classList.add("open"); document.body.style.overflow="hidden";
         $("#detailContent").querySelectorAll("[data-thumb]").forEach(function(btn){ btn.addEventListener("click", function(){ $("#detailImg").src=btn.getAttribute("data-thumb"); $("#detailContent").querySelectorAll("[data-thumb]").forEach(function(b){ b.classList.remove("sel"); }); btn.classList.add("sel"); }); });
         $("#dqMinus").addEventListener("click", function(){ if(detailQty>1){ detailQty--; $("#dqNum").textContent=detailQty; } });
@@ -670,8 +666,9 @@
         $("#cartTotalQty").textContent=n; $("#cartFoot").hidden=false;
       }
       function orderText(){ var lines=[t("orderGreet")]; Object.keys(cart).forEach(function(id){ lines.push("• "+productById(id).name+" × "+cart[id]); }); lines.push(t("orderModel")); lines.push(t("orderThanks")); return lines.join("\n"); }
-      function openCart(){ $("#cartDrawer").classList.add("open"); $("#cartDrawer").setAttribute("aria-hidden","false"); $("#overlay").classList.add("open"); document.body.style.overflow="hidden"; }
-      function closeCart(){ $("#cartDrawer").classList.remove("open"); $("#cartDrawer").setAttribute("aria-hidden","true"); $("#overlay").classList.remove("open"); document.body.style.overflow=""; }
+      var drawerHideTimer=null;
+      function openCart(){ var d=$("#cartDrawer"); clearTimeout(drawerHideTimer); d.hidden=false; requestAnimationFrame(function(){ requestAnimationFrame(function(){ d.classList.add("open"); }); }); d.setAttribute("aria-hidden","false"); $("#overlay").classList.add("open"); document.body.style.overflow="hidden"; }
+      function closeCart(){ var d=$("#cartDrawer"); d.classList.remove("open"); d.setAttribute("aria-hidden","true"); $("#overlay").classList.remove("open"); document.body.style.overflow=""; clearTimeout(drawerHideTimer); drawerHideTimer=setTimeout(function(){ if(!d.classList.contains("open")) d.hidden=true; },280); }
       function fallbackCopy(text){ var ta=document.createElement("textarea"); ta.value=text; ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select(); try{ document.execCommand("copy"); }catch(e){} document.body.removeChild(ta); }
 
       document.addEventListener("DOMContentLoaded", function(){
@@ -687,6 +684,7 @@
         document.addEventListener("keydown", function(e){ if(e.key==="Escape"){ closeDetail(); closeCart(); } });
         $("#cartItems").addEventListener("click", function(e){ var inc=e.target.closest("[data-inc]"); var dec=e.target.closest("[data-dec]"); var rem=e.target.closest("[data-remove]"); if(inc) setQty(inc.getAttribute("data-inc"), (cart[inc.getAttribute("data-inc")]||0)+1); if(dec) setQty(dec.getAttribute("data-dec"), (cart[dec.getAttribute("data-dec")]||0)-1); if(rem) setQty(rem.getAttribute("data-remove"),0); });
         $("#copyOrder").addEventListener("click", function(){ var text=orderText(); function done(){ showToast(t("copiedToast")); } if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done, function(){ fallbackCopy(text); done(); }); } else { fallbackCopy(text); done(); } });
+        $("#checkoutWhats").addEventListener("click", function(){ showToast(t("openingWhats")); window.open("https://wa.me/593989022077?text="+encodeURIComponent(orderText()),"_blank","noopener"); });
       });
     </script>
   </body>
