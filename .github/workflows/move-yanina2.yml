@@ -1,0 +1,24 @@
+name: Move Yanina v2 files
+on: workflow_dispatch
+jobs:
+  move:
+    runs-on: ubuntu-latest
+    permissions: { contents: write }
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p img
+          git mv img-00-54eaa729.webp img/ 2>/dev/null || mv img-00-54eaa729.webp img/
+          git mv img-01-91fb11e0.webp img/ 2>/dev/null || mv img-01-91fb11e0.webp img/
+          git mv img-02-47f3fd9b.webp img/ 2>/dev/null || mv img-02-47f3fd9b.webp img/
+          git mv img-03-320ba029.webp img/ 2>/dev/null || mv img-03-320ba029.webp img/
+          git mv img-04-07e90d16.jpg img/ 2>/dev/null || mv img-04-07e90d16.jpg img/
+          git mv img-05-9bc58b96.webp img/ 2>/dev/null || mv img-05-9bc58b96.webp img/
+          git mv img-09-2747b674.jpg img/ 2>/dev/null || mv img-09-2747b674.jpg img/
+          git mv img-10-b7afd31c.jpg img/ 2>/dev/null || mv img-10-b7afd31c.jpg img/
+          git mv img-11-f757fa76.jpg img/ 2>/dev/null || mv img-11-f757fa76.jpg img/
+          git mv img-12-055078e8.jpg img/ 2>/dev/null || mv img-12-055078e8.jpg img/
+          rm -f tienda/index.html
+          git mv tienda-index.html tienda/index.html
+          git config user.name "muse-bot"; git config user.email "muse-bot@users.noreply.github.com"
+          git add -A; git commit -m "Yanina store: remove hands-on section, click-to-play video, lazy images" || echo "nothing to commit"; git push
