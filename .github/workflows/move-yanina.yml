@@ -22,6 +22,7 @@ jobs:
           git mv img-15-f6adfe9d.jpg img/ 2>/dev/null || mv img-15-f6adfe9d.jpg img/
           git mv img-16-f76bfd6c.jpg img/ 2>/dev/null || mv img-16-f76bfd6c.jpg img/
           git mv img-17-8e74e763.jpg img/ 2>/dev/null || mv img-17-8e74e763.jpg img/
+          rm -f tienda/index.html
           git mv tienda-index-external.html tienda/index.html
           git config user.name "muse-bot"
           git config user.email "muse-bot@users.noreply.github.com"
