@@ -194,11 +194,23 @@
       /* ---------- promo video ---------- */
       .video-section{margin-top:44px;}
       .video-frame{
+        position:relative;
         max-width:340px;margin:0 auto;background:#fff;
         border:3px solid #fff;border-radius:26px;overflow:hidden;
         box-shadow:var(--shadow);outline:2.5px solid var(--card-border);
       }
-      .video-frame video{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:cover;background:#ffe9f3;}
+      .video-frame video{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:cover;background:#ffe9f3;cursor:pointer;}
+      .video-play{
+        position:absolute;inset:0;width:100%;height:100%;border:none;background:transparent;
+        display:flex;align-items:center;justify-content:center;padding:0;
+      }
+      .video-play-circle{
+        width:76px;height:76px;border-radius:50%;background:var(--hot);border:3px solid #fff;
+        box-shadow:0 10px 26px rgba(160,20,80,.45);
+        display:inline-flex;align-items:center;justify-content:center;color:#fff;
+      }
+      .video-play:active .video-play-circle{transform:scale(.95);}
+      .video-play[hidden]{display:none;}
 
       /* ---------- features (scallop clouds) ---------- */
       .features{
@@ -426,7 +438,7 @@
     <header>
       <div class="header-in">
         <a class="brand" href="#top" aria-label="Yanina, inicio">
-          <img src="../img/img-00-1f90e25f.webp" alt="Logo de Yanina" />
+          <img src="../img/img-00-54eaa729.webp" alt="Logo de Yanina" />
           <span>
             <span class="brand-name">yanina</span>
             <span class="brand-slogan" style="display:block;" data-i18n="slogan">Tu celu, tu estilo.</span>
@@ -483,15 +495,15 @@
             <div class="hero-carousel-view">
               <div class="hero-carousel-slides" id="heroCarouselSlides">
                 <figure class="hero-slide" data-pid="melody">
-                  <img class="hero-slide-img" src="../img/img-01-c60e4200.webp" alt="Funda rosa de My Melody con tarjetero trasero" fetchpriority="high" />
+                  <img class="hero-slide-img" src="../img/img-01-91fb11e0.webp" alt="Funda rosa de My Melody con tarjetero trasero" loading="lazy" />
                   <figcaption class="hero-slide-name">Funda My Melody con tarjetero</figcaption>
                 </figure>
                 <figure class="hero-slide" data-pid="rilakkuma">
-                  <img class="hero-slide-img" src="../img/img-02-4abe11c2.webp" alt="Funda naranja de Rilakkuma con lunares" />
+                  <img class="hero-slide-img" src="../img/img-02-47f3fd9b.webp" alt="Funda naranja de Rilakkuma con lunares" loading="lazy" />
                   <figcaption class="hero-slide-name">Funda Rilakkuma naranja</figcaption>
                 </figure>
                 <figure class="hero-slide" data-pid="osamu">
-                  <img class="hero-slide-img" src="../img/img-03-e022895c.webp" alt="Funda azul estilo sticker de Osamu Goods" />
+                  <img class="hero-slide-img" src="../img/img-03-320ba029.webp" alt="Funda azul estilo sticker de Osamu Goods" loading="lazy" />
                   <figcaption class="hero-slide-name">Funda Osamu Goods azul</figcaption>
                 </figure>
               </div>
@@ -522,7 +534,12 @@
           <p class="sec-sub">así lucen nuestras fundas ♡</p>
         </div>
         <div class="video-frame">
-          <video src="../video/yanina-video.mp4" width="540" height="960" autoplay muted loop playsinline preload="metadata" aria-label="Video de las fundas Yanina para iPhone"></video>
+          <video id="promoVideo" src="../video/yanina-video.mp4" width="540" height="960" muted loop playsinline preload="none" poster="../img/img-04-07e90d16.jpg" aria-label="Video de las fundas Yanina para iPhone"></video>
+          <button class="video-play" id="promoVideoPlay" type="button" aria-label="Reproducir video">
+            <span class="video-play-circle">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+            </span>
+          </button>
         </div>
       </section>
 
@@ -570,28 +587,6 @@
         <div class="grid" id="productGrid"></div>
       </section>
 
-      <!-- polaroids -->
-      <section aria-label="Fotos reales">
-        <div class="sec-head">
-          <h2 class="sec-title" data-i18n="polaTitle">Así se ven puestas</h2>
-          <p class="sec-sub" data-i18n="polaSub">directo de nuestro póster oficial ♡</p>
-        </div>
-        <div class="polas">
-          <figure class="pola">
-            <img src="../img/img-04-502fd465.webp" alt="Funda My Melody rosa en la mano" loading="lazy" />
-            <figcaption data-i18n="tagMelody">Súper linda ♡</figcaption>
-          </figure>
-          <figure class="pola">
-            <img src="../img/img-05-994b5d7b.webp" alt="Funda Rilakkuma naranja en la mano" loading="lazy" />
-            <figcaption data-i18n="tagRila">Estilo único ♡</figcaption>
-          </figure>
-          <figure class="pola">
-            <img src="../img/img-06-8f49799a.webp" alt="Funda Osamu Goods azul en la mano" loading="lazy" />
-            <figcaption data-i18n="tagOsamu">Combina con todo ♡</figcaption>
-          </figure>
-        </div>
-      </section>
-
       <!-- how to buy -->
       <section aria-label="Cómo comprar">
         <div class="sec-head">
@@ -619,7 +614,7 @@
         </div>
         <div class="contact">
           <div class="qr-frame">
-            <img src="../img/img-07-ad2082e8.webp" alt="Código QR de WhatsApp de Yanina" width="502" height="502" />
+            <img src="../img/img-05-9bc58b96.webp" alt="Código QR de WhatsApp de Yanina" width="502" height="502" />
           </div>
           <div class="contact-txt">
             <h3 data-i18n="contactHead">Estamos para ayudarte ♡</h3>
@@ -814,43 +809,43 @@
 
       var PRODUCTS_DATA = [
         {
-          id:"melody", tint:"#ffe9f3", img:"../img/img-01-c60e4200.webp", pola:"../img/img-04-502fd465.webp", searchTerms:"melody my melody rosa pink 粉色 粉 美乐蒂 美樂蒂 sanrio tarjetero tarjeta card holder 卡包 卡包款 lazo bow 蝴蝶结",
+          id:"melody", tint:"#ffe9f3", img:"../img/img-01-91fb11e0.webp", searchTerms:"melody my melody rosa pink 粉色 粉 美乐蒂 美樂蒂 sanrio tarjetero tarjeta card holder 卡包 卡包款 lazo bow 蝴蝶结",
           es:{name:"Funda My Melody con tarjetero", tag:"Súper linda ♡", imgAlt:"Funda rosa de My Melody con tarjetero trasero", extraAlt:"Funda My Melody rosa en primer plano sobre fondo de lunares", desc:"La favorita de las románticas: rosa total, el lazo gigante de My Melody y un tarjetero trasero para llevar tu tarjeta siempre contigo.", features:["Tarjetero trasero integrado para tu tarjeta o billete","Cámara protegida con borde elevado y marco decorado","Diseño adorable, ligera y cómoda en la mano","Pregúntanos por WhatsApp por los modelos de iPhone disponibles"]},
           zh:{name:"My Melody 卡包手机壳", tag:"超级可爱 ♡", imgAlt:"粉色 My Melody 背面卡包手机壳", extraAlt:"波点背景上的粉色 My Melody 手机壳特写", desc:"浪漫女孩的最爱：全粉配色、My Melody 大蝴蝶结，背面还有卡包，随身带卡超方便。", features:["背面一体卡包，可放银行卡或现金","摄像头高边保护，边框带装饰","可爱设计，轻盈好握","iPhone 可选型号请通过 WhatsApp 咨询"]},
           en:{name:"My Melody Case with Card Holder", tag:"Super cute ♡", imgAlt:"Pink My Melody case with back card holder", extraAlt:"Pink My Melody case close-up on a polka dot background", desc:"A romantic favorite: all pink, My Melody's giant bow, and a back card holder so your card is always with you.", features:["Built-in back card holder for your card or cash","Raised camera protection with decorated frame","Adorable design, light and comfy to hold","Ask us on WhatsApp for available iPhone models"]}
         },
         {
-          id:"rilakkuma", tint:"#ffedd6", img:"../img/img-02-4abe11c2.webp", pola:"../img/img-05-994b5d7b.webp", searchTerms:"rilakkuma korilakkuma naranja orange 橙色 橙 轻松熊 輕鬆熊 拉拉熊 oso bear 小熊 lunares polka dots 波点 波點 amarillo",
+          id:"rilakkuma", tint:"#ffedd6", img:"../img/img-02-47f3fd9b.webp", searchTerms:"rilakkuma korilakkuma naranja orange 橙色 橙 轻松熊 輕鬆熊 拉拉熊 oso bear 小熊 lunares polka dots 波点 波點 amarillo",
           es:{name:"Funda Rilakkuma naranja", tag:"Estilo único ♡", imgAlt:"Funda naranja de Rilakkuma con lunares", extraAlt:"Funda Rilakkuma naranja con lunares en primer plano", desc:"El osito más relajado del mundo en un naranja vibrante con lunares. Imposible pasar desapercibida: pura alegría para tu iPhone.", features:["Color naranja intenso con lunares blancos","Cámara protegida con borde elevado y mini ositos decorativos","Diseño adorable, ligera y cómoda en la mano","Pregúntanos por WhatsApp por los modelos de iPhone disponibles"]},
           zh:{name:"轻松熊橙色手机壳", tag:"独特风格 ♡", imgAlt:"橙色波点轻松熊手机壳", extraAlt:"橙色波点轻松熊手机壳特写", desc:"全世界最悠闲的小熊，配上亮眼橙色和波点。拿在手上绝不撞款，给你的 iPhone 满满快乐。", features:["亮橙色配白色波点","摄像头高边保护，带小熊装饰","可爱设计，轻盈好握","iPhone 可选型号请通过 WhatsApp 咨询"]},
           en:{name:"Rilakkuma Orange Case", tag:"Unique style ♡", imgAlt:"Orange Rilakkuma case with polka dots", extraAlt:"Orange Rilakkuma polka dot case close-up", desc:"The world's most relaxed bear in vibrant orange with polka dots. Impossible to go unnoticed: pure joy for your iPhone.", features:["Bright orange with white polka dots","Raised camera protection with mini bear details","Adorable design, light and comfy to hold","Ask us on WhatsApp for available iPhone models"]}
         },
         {
-          id:"osamu", tint:"#e3f0ff", img:"../img/img-03-e022895c.webp", pola:"../img/img-06-8f49799a.webp", searchTerms:"osamu osamu goods azul blue 蓝色 藍色 sticker stickers 贴纸 貼紙 retro jill jack 原田治 collage 拼贴 拼貼",
+          id:"osamu", tint:"#e3f0ff", img:"../img/img-03-320ba029.webp", searchTerms:"osamu osamu goods azul blue 蓝色 藍色 sticker stickers 贴纸 貼紙 retro jill jack 原田治 collage 拼贴 拼貼",
           es:{name:"Funda Osamu Goods azul", tag:"Combina con todo ♡", imgAlt:"Funda azul estilo sticker de Osamu Goods", extraAlt:"Funda Osamu Goods azul en primer plano sobre fondo de lunares", desc:"Estilo sticker retro de Osamu Goods: Jill, Jack y todos sus amigos sobre fondo rosa con borde azul. Personalidad en cada centímetro.", features:["Diseño tipo collage de stickers, súper retro","Cámara protegida con borde elevado y marco decorado","Diseño adorable, ligera y cómoda en la mano","Pregúntanos por WhatsApp por los modelos de iPhone disponibles"]},
           zh:{name:"Osamu Goods 蓝色手机壳", tag:"百搭款 ♡", imgAlt:"蓝色贴纸风 Osamu Goods 手机壳", extraAlt:"波点背景上的蓝色 Osamu Goods 手机壳特写", desc:"复古贴纸风 Osamu Goods：Jill、Jack 和所有小伙伴都在粉色底、蓝色边上，每一寸都有个性。", features:["贴纸拼贴设计，超复古","摄像头高边保护，边框带装饰","可爱设计，轻盈好握","iPhone 可选型号请通过 WhatsApp 咨询"]},
           en:{name:"Osamu Goods Blue Case", tag:"Goes with everything ♡", imgAlt:"Blue Osamu Goods sticker-style case", extraAlt:"Blue Osamu Goods case close-up on a polka dot background", desc:"Retro sticker style from Osamu Goods: Jill, Jack and all their friends on a pink background with a blue border. Personality in every inch.", features:["Sticker collage design, super retro","Raised camera protection with decorated frame","Adorable design, light and comfy to hold","Ask us on WhatsApp for available iPhone models"]}
         },
         {
-          id:"melody-pink", tint:"#ffe9f3", img:"../img/img-14-d5cb062d.jpg", searchTerms:"melody my melody rosa pink 粉色 粉 美乐蒂 美樂蒂 sanrio lazo bow 蝴蝶结 蝴蝶結 fresa fresita 草莓 corazon corazones 爱心 ventana grande ventanal 大视窗 大視窗 camara 全包 cobertura total full coverage todos los modelos 全型号 全型號 all models nuevos nueva 新品",
+          id:"melody-pink", tint:"#ffe9f3", img:"../img/img-09-2747b674.jpg", searchTerms:"melody my melody rosa pink 粉色 粉 美乐蒂 美樂蒂 sanrio lazo bow 蝴蝶结 蝴蝶結 fresa fresita 草莓 corazon corazones 爱心 ventana grande ventanal 大视窗 大視窗 camara 全包 cobertura total full coverage todos los modelos 全型号 全型號 all models nuevos nueva 新品",
           es:{name:"Funda My Melody rosa · ventana grande", tag:"¡Nueva! ♡", imgAlt:"Funda rosa de My Melody con ventana grande de cámara, sobre un plato blanco", extraAlt:"Funda My Melody rosa, detalle de la ventana grande de la cámara", desc:"My Melody en rosa total: lazo gigante de lunares, mini fresitas y corazones, con ventana grande para la cámara y cobertura total. Disponible para todos los modelos de iPhone.", features:["Ventana grande de cámara con cobertura total y borde elevado","Disponible para todos los modelos de iPhone: al pedir, dinos tu modelo","Diseño adorable, ligera y cómoda en la mano","Carcasa completa que también protege los bordes"]},
           zh:{name:"My Melody 粉色大视窗手机壳", tag:"新品到货 ♡", imgAlt:"粉色 My Melody 大视窗全包手机壳，放在白色盘子上", extraAlt:"粉色 My Melody 手机壳大视窗特写", desc:"全粉美乐蒂：波点大蝴蝶结、小草莓和小爱心，大视窗设计，摄像头全包保护。iPhone 全系列型号都有，下单时告诉我们你的型号。", features:["大视窗设计，摄像头全包，边框加高保护","iPhone 全系列型号都有：下单时告诉我们你的型号","可爱设计，轻盈好握","全包壳身，边角也保护到"]},
           en:{name:"My Melody Pink Big-Window Case", tag:"Just in! ♡", imgAlt:"Pink My Melody case with a big camera window, on a white plate", extraAlt:"Pink My Melody case, big camera window close-up", desc:"My Melody in total pink: giant polka-dot bow, tiny strawberries and hearts, with a big camera window and full coverage. Available for all iPhone models.", features:["Big camera window with full coverage and raised edges","Available for all iPhone models: tell us your model when you order","Adorable design, light and comfy to hold","Full-body case that also protects the edges"]}
         },
         {
-          id:"angel-girl", tint:"#f1f1f4", img:"../img/img-15-f6adfe9d.jpg", searchTerms:"angel niña chica alas angelito 天使 女孩 天使女孩 angel girl wings blanco white gris grey gray 白色 白 灰 透明 transparente ventana grande 大视窗 大視窗 全包 cobertura total full coverage todos los modelos 全型号 全型號 all models musica notas musicales trebol clover 音符 四叶草 nueva 新品",
+          id:"angel-girl", tint:"#f1f1f4", img:"../img/img-10-b7afd31c.jpg", searchTerms:"angel niña chica alas angelito 天使 女孩 天使女孩 angel girl wings blanco white gris grey gray 白色 白 灰 透明 transparente ventana grande 大视窗 大視窗 全包 cobertura total full coverage todos los modelos 全型号 全型號 all models musica notas musicales trebol clover 音符 四叶草 nueva 新品",
           es:{name:"Funda Niña Ángel · ventana grande", tag:"Dulce y soñadora ♡", imgAlt:"Funda blanca con una niña ángel de alas grises, notas musicales y tréboles", desc:"Una niña ángel de alas grises entre notas musicales y tréboles de la suerte, en blanco y gris suave. Ventana grande para la cámara y cobertura total, para todos los modelos de iPhone.", features:["Ventana grande de cámara con cobertura total y borde elevado","Disponible para todos los modelos de iPhone: al pedir, dinos tu modelo","Diseño adorable, ligera y cómoda en la mano","Carcasa completa que también protege los bordes"]},
           zh:{name:"天使女孩大视窗手机壳", tag:"梦幻天使 ♡", imgAlt:"白色天使女孩手机壳，灰色翅膀、音符和四叶草图案", desc:"灰色翅膀的天使女孩，身边飘着音符和幸运四叶草，白灰配色温柔干净。大视窗设计，摄像头全包保护，iPhone 全系列型号都有。", features:["大视窗设计，摄像头全包，边框加高保护","iPhone 全系列型号都有：下单时告诉我们你的型号","可爱设计，轻盈好握","全包壳身，边角也保护到"]},
           en:{name:"Angel Girl Big-Window Case", tag:"Sweet little angel ♡", imgAlt:"White case with an angel girl with grey wings, music notes and clovers", desc:"A little angel girl with grey wings among music notes and lucky clovers, in soft white and grey. Big camera window with full coverage, for all iPhone models.", features:["Big camera window with full coverage and raised edges","Available for all iPhone models: tell us your model when you order","Adorable design, light and comfy to hold","Full-body case that also protects the edges"]}
         },
         {
-          id:"yellow-cat", tint:"#fff6d8", img:"../img/img-16-f76bfd6c.jpg", searchTerms:"gato gatito amarillo gafas lentes anteojos cat kitty yellow glasses 黄猫 黃貓 黄色 黃色 眼镜 眼鏡 猫咪 貓咪 ventana grande 大视窗 大視窗 全包 cobertura total full coverage todos los modelos 全型号 全型號 all models estrellas stars 星星 gotas nueva 新品",
+          id:"yellow-cat", tint:"#fff6d8", img:"../img/img-11-f757fa76.jpg", searchTerms:"gato gatito amarillo gafas lentes anteojos cat kitty yellow glasses 黄猫 黃貓 黄色 黃色 眼镜 眼鏡 猫咪 貓咪 ventana grande 大视窗 大視窗 全包 cobertura total full coverage todos los modelos 全型号 全型號 all models estrellas stars 星星 gotas nueva 新品",
           es:{name:"Funda Gatito amarillo con gafas · ventana grande", tag:"¡Qué ternura! ♡", imgAlt:"Funda amarilla pálida con un gatito con gafas grandes y estrellas en los ojos", desc:"Un gatito amarillo con gafas enormes y estrellitas en los ojos, sobre fondo amarillo pastel con gotitas. Ventana grande para la cámara y cobertura total, para todos los modelos de iPhone.", features:["Ventana grande de cámara con cobertura total y borde elevado","Disponible para todos los modelos de iPhone: al pedir, dinos tu modelo","Diseño adorable, ligera y cómoda en la mano","Carcasa completa que también protege los bordes"]},
           zh:{name:"黄猫眼镜大视窗手机壳", tag:"萌趣十足 ♡", imgAlt:"浅黄色手机壳，戴大眼镜的黄猫图案", desc:"戴着大眼镜的黄猫，眼睛里还有小星星，奶黄底色配小水滴。大视窗设计，摄像头全包保护，iPhone 全系列型号都有。", features:["大视窗设计，摄像头全包，边框加高保护","iPhone 全系列型号都有：下单时告诉我们你的型号","可爱设计，轻盈好握","全包壳身，边角也保护到"]},
           en:{name:"Yellow Cat with Glasses Big-Window Case", tag:"So adorable! ♡", imgAlt:"Pale yellow case with a kitty wearing big glasses and stars in its eyes", desc:"A yellow kitty wearing oversized glasses with stars in its eyes, on a soft pastel-yellow background with little droplets. Big camera window with full coverage, for all iPhone models.", features:["Big camera window with full coverage and raised edges","Available for all iPhone models: tell us your model when you order","Adorable design, light and comfy to hold","Full-body case that also protects the edges"]}
         },
         {
-          id:"black-cat", tint:"#ececf0", img:"../img/img-17-8e74e763.jpg", searchTerms:"gato gatito negro lovely cat kitty black 黑猫 黑貓 黑色 blanco y negro black and white 黑白 estrellas stars 星星 lunares polka dots 波点 波點 alas wings 翅膀 corazon heart 爱心 ventana grande 大视窗 大視窗 全包 cobertura total full coverage todos los modelos 全型号 全型號 all models nueva 新品",
+          id:"black-cat", tint:"#ececf0", img:"../img/img-12-055078e8.jpg", searchTerms:"gato gatito negro lovely cat kitty black 黑猫 黑貓 黑色 blanco y negro black and white 黑白 estrellas stars 星星 lunares polka dots 波点 波點 alas wings 翅膀 corazon heart 爱心 ventana grande 大视窗 大視窗 全包 cobertura total full coverage todos los modelos 全型号 全型號 all models nueva 新品",
           es:{name:"Funda Gatito negro Lovely · ventana grande", tag:"Lovely ♡", imgAlt:"Funda blanca y negra con un gatito negro con alas y la palabra Lovely", desc:"Un gatito negro con alitas de ángel y la palabra Lovely, en blanco y negro con estrellitas y lunares. Ventana grande para la cámara y cobertura total, para todos los modelos de iPhone.", features:["Ventana grande de cámara con cobertura total y borde elevado","Disponible para todos los modelos de iPhone: al pedir, dinos tu modelo","Diseño adorable, ligera y cómoda en la mano","Carcasa completa que también protege los bordes"]},
           zh:{name:"黑猫 Lovely 大视窗手机壳", tag:"酷酷又可爱 ♡", imgAlt:"黑白手机壳，带翅膀的黑猫和 Lovely 字样", desc:"长着天使翅膀的黑猫，配 Lovely 字样，黑白配色加星星波点。大视窗设计，摄像头全包保护，iPhone 全系列型号都有。", features:["大视窗设计，摄像头全包，边框加高保护","iPhone 全系列型号都有：下单时告诉我们你的型号","可爱设计，轻盈好握","全包壳身，边角也保护到"]},
           en:{name:"Black Cat Lovely Big-Window Case", tag:"Lovely ♡", imgAlt:"Black and white case with a winged black cat and the word Lovely", desc:"A black cat with little angel wings and the word Lovely, in black and white with stars and polka dots. Big camera window with full coverage, for all iPhone models.", features:["Big camera window with full coverage and raised edges","Available for all iPhone models: tell us your model when you order","Adorable design, light and comfy to hold","Full-body case that also protects the edges"]}
@@ -934,10 +929,10 @@
         if (p.extra) gal.push({src:p.extra, alt:p.extraAlt || p.imgAlt});
         gal.push({src:p.img, alt:p.imgAlt});
         if (p.pola) gal.push({src:p.pola, alt:t("polaAlt")});
-        var thumbs=gal.map(function(g, idx){ return '<button class="'+(idx===0?"sel":"")+'" data-thumb="'+g.src+'" data-alt="'+g.alt+'"><img src="'+g.src+'" alt="" /></button>'; }).join("");
+        var thumbs=gal.map(function(g, idx){ return '<button class="'+(idx===0?"sel":"")+'" data-thumb="'+g.src+'" data-alt="'+g.alt+'"><img src="'+g.src+'" alt="" loading="lazy" /></button>'; }).join("");
         var askUrl="https://wa.me/593989022077?text="+encodeURIComponent(t("askMsg")+p.name);
         var feats=p.features.map(function(f){ return "<li>"+heartSvg()+"<span>"+f+"</span></li>"; }).join("");
-        $("#detailContent").innerHTML='<div><img class="modal-main-img" id="detailImg" src="'+gal[0].src+'" alt="'+gal[0].alt+'" /><div class="thumbs">'+thumbs+'</div></div><div class="modal-info"><span class="tag">'+p.tag+'</span><h2>'+p.name+'</h2><div class="price-row"><span class="price-chip">'+t("priceDetail")+'</span></div><p>'+p.desc+'</p><ul class="feat-list">'+feats+'</ul><div class="modal-actions"><span class="qty-picker"><button class="qty-btn" id="dqMinus">−</button><span class="qty-num" id="dqNum">1</span><button class="qty-btn" id="dqPlus">+</button></span><button class="btn btn-hot" id="dqAdd">'+t("addToCart")+'</button></div><div class="modal-actions"><a class="btn btn-white" href="'+askUrl+'" target="_blank" rel="noopener" id="dqWhats">'+t("consultWhats")+'</a></div></div>';
+        $("#detailContent").innerHTML='<div><img class="modal-main-img" id="detailImg" src="'+gal[0].src+'" alt="'+gal[0].alt+'" loading="lazy" /><div class="thumbs">'+thumbs+'</div></div><div class="modal-info"><span class="tag">'+p.tag+'</span><h2>'+p.name+'</h2><div class="price-row"><span class="price-chip">'+t("priceDetail")+'</span></div><p>'+p.desc+'</p><ul class="feat-list">'+feats+'</ul><div class="modal-actions"><span class="qty-picker"><button class="qty-btn" id="dqMinus">−</button><span class="qty-num" id="dqNum">1</span><button class="qty-btn" id="dqPlus">+</button></span><button class="btn btn-hot" id="dqAdd">'+t("addToCart")+'</button></div><div class="modal-actions"><a class="btn btn-white" href="'+askUrl+'" target="_blank" rel="noopener" id="dqWhats">'+t("consultWhats")+'</a></div></div>';
         $("#detailModal").classList.add("open"); document.body.style.overflow="hidden";
         $("#detailContent").querySelectorAll("[data-thumb]").forEach(function(btn){ btn.addEventListener("click", function(){ var main=$("#detailImg"); main.src=btn.getAttribute("data-thumb"); main.alt=btn.getAttribute("data-alt")||""; $("#detailContent").querySelectorAll("[data-thumb]").forEach(function(b){ b.classList.remove("sel"); }); btn.classList.add("sel"); }); });
         $("#dqMinus").addEventListener("click", function(){ if(detailQty>1){ detailQty--; $("#dqNum").textContent=detailQty; } });
@@ -957,7 +952,7 @@
         for (var s = 0; s < 3; s++){
           var raw = PRODUCTS_DATA[(carouselIndex + s) % n];
           var p = localizedProduct(raw);
-          html += '<figure class="hero-slide" data-pid="'+raw.id+'"><img class="hero-slide-img" src="'+p.img+'" alt="'+p.imgAlt+'" /><figcaption class="hero-slide-name">'+p.name+'</figcaption></figure>';
+          html += '<figure class="hero-slide" data-pid="'+raw.id+'"><img class="hero-slide-img" src="'+p.img+'" alt="'+p.imgAlt+'" loading="lazy" /><figcaption class="hero-slide-name">'+p.name+'</figcaption></figure>';
         }
         box.innerHTML = html;
         box.classList.remove("swap");
@@ -1010,7 +1005,7 @@
         var n=cartQty(); var badge=$("#cartCount"); if(badge){ badge.hidden=n===0; badge.textContent=n; }
         var box=$("#cartItems"); if(!box) return; var ids=Object.keys(cart);
         if(!ids.length){ box.innerHTML='<div class="empty-cart">'+t("emptyCart")+'</div>'; $("#cartFoot").hidden=true; return; }
-        box.innerHTML=ids.map(function(id){ var p=productById(id); return '<div class="cart-item"><img src="'+p.img+'" alt="'+p.imgAlt+'" /><div class="ci-info"><div class="ci-name">'+p.name+'</div><div class="ci-price">'+t("unitPrice")+' · '+t("cartSubtotal")+': $'+(cart[id]*10)+' USD</div><div class="qty-row"><button class="qty-btn" data-dec="'+id+'">−</button><span class="qty-num">'+cart[id]+'</span><button class="qty-btn" data-inc="'+id+'">+</button><button class="ci-remove" data-remove="'+id+'">'+t("remove")+'</button></div></div></div>'; }).join("");
+        box.innerHTML=ids.map(function(id){ var p=productById(id); return '<div class="cart-item"><img src="'+p.img+'" alt="'+p.imgAlt+'" loading="lazy" /><div class="ci-info"><div class="ci-name">'+p.name+'</div><div class="ci-price">'+t("unitPrice")+' · '+t("cartSubtotal")+': $'+(cart[id]*10)+' USD</div><div class="qty-row"><button class="qty-btn" data-dec="'+id+'">−</button><span class="qty-num">'+cart[id]+'</span><button class="qty-btn" data-inc="'+id+'">+</button><button class="ci-remove" data-remove="'+id+'">'+t("remove")+'</button></div></div></div>'; }).join("");
         $("#cartTotalQty").textContent=n; var subEl=$("#cartSubtotalAmt"); if(subEl) subEl.textContent="$"+(n*10)+" USD"; $("#cartFoot").hidden=false;
       }
       function orderText(){ var lines=[t("orderGreet")]; var total=0; Object.keys(cart).forEach(function(id){ total+=cart[id]*10; lines.push("• "+productById(id).name+" × "+cart[id]+" — "+t("unitPrice")+" = $"+(cart[id]*10)+" USD"); }); lines.push(t("cartSubtotal")+": $"+total+" USD"); lines.push(t("orderModel")); lines.push(t("orderThanks")); return lines.join("\n"); }
@@ -1023,6 +1018,15 @@
         var initLang=detectLang();
         if (initLang!=="es"){ applyLang(initLang); } else { renderProducts(); renderCart(); }
         initCarousel();
+        var promoVideo=$("#promoVideo"); var promoPlay=$("#promoVideoPlay");
+        if (promoVideo && promoPlay){
+          var syncPromoBtn=function(){ promoPlay.hidden=!promoVideo.paused; };
+          promoPlay.addEventListener("click", function(){ var r=promoVideo.play(); if(r && r.catch) r.catch(function(){}); });
+          promoVideo.addEventListener("click", function(){ if(promoVideo.paused){ var r=promoVideo.play(); if(r && r.catch) r.catch(function(){}); } else { promoVideo.pause(); } });
+          promoVideo.addEventListener("play", syncPromoBtn);
+          promoVideo.addEventListener("pause", syncPromoBtn);
+          syncPromoBtn();
+        }
         document.querySelectorAll(".lang-btn").forEach(function(b){ b.addEventListener("click", function(){ var l=b.getAttribute("data-lang"); saveLang(l); applyLang(l); }); });
         var grid=$("#productGrid");
         grid.addEventListener("click", function(e){ var d=e.target.closest("[data-detail]"); var a=e.target.closest("[data-add]"); if(d) openDetail(d.getAttribute("data-detail")); if(a) addToCart(a.getAttribute("data-add"),1); });
