@@ -1,0 +1,22 @@
+name: Move yanina to tienda
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  move:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Move yanina.html to tienda/index.html and replace video
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          mv yanina.html tienda/index.html
+          mv video/yanina-video-540.mp4 video/yanina-video.mp4
+          git add -A
+          git commit -m "Move yanina.html to tienda/index.html; replace video/yanina-video.mp4" || echo "nothing to commit"
+          git push
