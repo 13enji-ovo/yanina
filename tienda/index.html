@@ -84,7 +84,7 @@
       }
       .nav-link:hover{background:#ffd9e9;}
       .lang-switch{display:flex;background:#fff;border:2px solid var(--hot);border-radius:999px;padding:3px;gap:2px;flex:0 0 auto;}
-      .lang-btn{border:none;background:transparent;color:var(--hot-deep);font-weight:800;font-size:13.5px;line-height:1;padding:7px 10px;border-radius:999px;white-space:nowrap;}
+      .lang-btn{border:none;background:transparent;color:var(--hot-deep);font-weight:800;font-size:13.5px;line-height:1;padding:7px 10px;border-radius:999px;white-space:nowrap;min-height:38px;}
       .lang-btn.active{background:var(--hot);color:#fff;box-shadow:0 3px 8px rgba(242,78,156,.35);}
       .cart-btn{
         position:relative;border:none;background:var(--hot);color:#fff;
@@ -107,7 +107,7 @@
         .nav-link{display:none;}
         .cart-btn{padding:9px 12px;font-size:14px;}
         .cart-btn .cart-label{display:none;}
-        .lang-btn{padding:6px 8px;font-size:12.5px;}
+        .lang-btn{padding:6px 8px;font-size:12.5px;min-height:36px;}
         .header-nav{margin-left:auto;gap:6px;}
       }
 
@@ -277,7 +277,7 @@
       .cart-item .ci-name{font-weight:800;font-size:16px;line-height:1.2;color:var(--ink);}
       .qty-row{display:flex;align-items:center;gap:8px;margin-top:6px;}
       .qty-btn{
-        width:28px;height:28px;border-radius:50%;border:2px solid var(--hot);background:#fff;
+        width:44px;height:44px;border-radius:50%;border:2px solid var(--hot);background:#fff;
         color:var(--hot-deep);font-weight:800;font-size:16px;line-height:1;
         display:inline-flex;align-items:center;justify-content:center;
       }
@@ -327,6 +327,8 @@
         transition:transform .3s ease;max-width:92vw;text-align:center;
       }
       .toast.show{transform:translate(-50%,0);}
+      .toast.top{bottom:auto;top:calc(env(safe-area-inset-top,0px) + 10px);left:14px;max-width:calc(100vw - 92px);font-size:14px;padding:9px 16px;line-height:1.3;transform:translate(0,-160px);}
+      .toast.top.show{transform:translate(0,0);}
     </style>
   </head>
   <body>
@@ -420,7 +422,7 @@
         </div>
         <div class="polas">
           <figure class="pola pola-poster pola-video">
-            <video src="../video/yanina-video.mp4" poster="../img/video-poster.webp" width="720" height="1280" autoplay muted loop playsinline preload="metadata" aria-label="Video de las fundas Yanina para iPhone"></video>
+            <video src="../video/yanina-video.mp4" poster="../img/video-poster.webp" width="540" height="960" autoplay muted loop playsinline preload="metadata" aria-label="Video de las fundas Yanina para iPhone"></video>
             <figcaption data-i18n="polaVideo">¡Mírala en video! ♡</figcaption>
           </figure>
           <figure class="pola pola-poster">
@@ -559,7 +561,7 @@
           cartTitle:"Tu carrito ♡", cartTotal:"Total de productos", copyOrder:"Copiar mi pedido", checkoutWhats:"Confirmar pedido por WhatsApp", openingWhats:"Abriendo WhatsApp… ♡",
           cartNote:"Al confirmar, se abre WhatsApp con tu pedido ya escrito: solo cuéntanos el modelo de tu iPhone y confirmamos tu pedido. Precio: $15 USD c/u. El pago es con tarjeta local. ♡",
           priceChip:"$15 USD", priceDetail:"$15 USD c/u", stock:"Disponible", clearSet:"Set completo transparente", unit:"c/u", totalUsd:"Total", orderTotal:"Total: ", orderShip:"El envío corre por cuenta del comprador",
-          viewDetail:"Ver detalle", add:"Agregar ♡", addToCart:"Agregar al carrito ♡", consultWhats:"Consultar por WhatsApp",
+          viewDetail:"Ver detalle", add:"Agregar ♡", addToCart:"Agregar al carrito ♡", consultWhats:"Consultar por WhatsApp", askMsg:"¡Hola Yanina! ♡ Quiero consultar por la funda: ", polaAlt:"Foto de la funda en la mano",
           remove:"Quitar", emptyCart:"Tu carrito está vacío… por ahora.<br/>Explora la colección y elige tu favorita ♡",
           addedSuffix:" agregada al carrito! ♡", copiedToast:"¡Pedido copiado! Pégalo en WhatsApp ♡",
           orderGreet:"¡Hola Yanina! ♡ Quiero hacer un pedido:", orderModel:"Mi modelo de iPhone es: ____", orderThanks:"¡Gracias!",
@@ -582,7 +584,7 @@
           cartTitle:"你的购物车 ♡", cartTotal:"商品总件数", copyOrder:"复制我的订单", checkoutWhats:"通过 WhatsApp 确认订单", openingWhats:"正在打开 WhatsApp… ♡",
           cartNote:"点确认后会打开 WhatsApp，订单已经自动写好：告诉我们你的 iPhone 型号，我们确认订单（每个 $15 美元），付款走当地银行卡。♡",
           priceChip:"$15 USD", priceDetail:"$15 USD / 个", stock:"有货", clearSet:"全清套", unit:"/个", totalUsd:"合计", orderTotal:"合计：", orderShip:"运费买家自理",
-          viewDetail:"查看详情", add:"加入 ♡", addToCart:"加入购物车 ♡", consultWhats:"WhatsApp 咨询",
+          viewDetail:"查看详情", add:"加入 ♡", addToCart:"加入购物车 ♡", consultWhats:"WhatsApp 咨询", askMsg:"你好 Yanina！♡ 我想咨询这款手机壳：", polaAlt:"手机壳上手实拍",
           remove:"移除", emptyCart:"购物车还是空的……<br/>去逛逛系列，挑一款你最喜欢的 ♡",
           addedSuffix:" 已加入购物车！♡", copiedToast:"订单已复制！粘贴到 WhatsApp 发给我们 ♡",
           orderGreet:"你好 Yanina！♡ 我想下单：", orderModel:"我的 iPhone 型号是：____", orderThanks:"谢谢！",
@@ -605,7 +607,7 @@
           cartTitle:"Your cart ♡", cartTotal:"Total items", copyOrder:"Copy my order", checkoutWhats:"Confirm order on WhatsApp", openingWhats:"Opening WhatsApp… ♡",
           cartNote:"When you confirm, WhatsApp opens with your order already written: just tell us your iPhone model and we'll confirm your order. Price: $15 USD each. Payment is by local card. ♡",
           priceChip:"$15 USD", priceDetail:"$15 USD each", stock:"In stock", clearSet:"Full clear set", unit:"each", totalUsd:"Total", orderTotal:"Total: ", orderShip:"Shipping is paid by the buyer",
-          viewDetail:"View details", add:"Add ♡", addToCart:"Add to cart ♡", consultWhats:"Ask on WhatsApp",
+          viewDetail:"View details", add:"Add ♡", addToCart:"Add to cart ♡", consultWhats:"Ask on WhatsApp", askMsg:"Hi Yanina! ♡ I have a question about this case: ", polaAlt:"Photo of the case in hand",
           remove:"Remove", emptyCart:"Your cart is empty… for now.<br/>Browse the collection and pick your favorite ♡",
           addedSuffix:" added to cart! ♡", copiedToast:"Order copied! Paste it in WhatsApp ♡",
           orderGreet:"Hi Yanina! ♡ I'd like to order:", orderModel:"My iPhone model is: ____", orderThanks:"Thank you!",
@@ -615,16 +617,16 @@
 
       var PRODUCTS_DATA = [
         {
-          id:"melody", tint:"#ffe9f3", img:"../img/producto-melody.webp", pola:"../img/pola-melody.webp", extra:"../img/melody-lunares.webp", extraAlt:"Funda My Melody transparente sobre fondo rosa con lunares blancos",
-          es:{name:"Funda My Melody con tarjetero", tag:"Súper linda ♡", imgAlt:"Funda rosa de My Melody con tarjetero trasero", desc:"La favorita de las románticas: rosa total, el lazo gigante de My Melody y un tarjetero trasero para llevar tu tarjeta siempre contigo.", features:["Tarjetero trasero integrado para tu tarjeta o billete","Cámara protegida con borde elevado y marco decorado","Diseño adorable, ligera y cómoda en la mano","Set completo transparente","Disponible para todos los modelos de iPhone"]},
-          zh:{name:"My Melody 卡包手机壳", tag:"超级可爱 ♡", imgAlt:"粉色 My Melody 背面卡包手机壳", desc:"浪漫女孩的最爱：全粉配色、My Melody 大蝴蝶结，背面还有卡包，随身带卡超方便。", features:["背面一体卡包，可放银行卡或现金","摄像头高边保护，边框带装饰","可爱设计，轻盈好握","全清套","iPhone 全系列全型号"]},
-          en:{name:"My Melody Case with Card Holder", tag:"Super cute ♡", imgAlt:"Pink My Melody case with back card holder", desc:"A romantic favorite: all pink, My Melody's giant bow, and a back card holder so your card is always with you.", features:["Built-in back card holder for your card or cash","Raised camera protection with decorated frame","Adorable design, light and comfy to hold","Full clear set","Available for all iPhone models"]}
+          id:"melody", tint:"#ffe9f3", img:"../img/producto-melody.webp", pola:"../img/pola-melody.webp", extra:"../img/melody-lunares.webp",
+          es:{extraAlt:"Funda My Melody transparente sobre fondo rosa con lunares blancos", name:"Funda My Melody con tarjetero", tag:"Súper linda ♡", imgAlt:"Funda rosa de My Melody con tarjetero trasero", desc:"La favorita de las románticas: rosa total, el lazo gigante de My Melody y un tarjetero trasero para llevar tu tarjeta siempre contigo.", features:["Tarjetero trasero integrado para tu tarjeta o billete","Cámara protegida con borde elevado y marco decorado","Diseño adorable, ligera y cómoda en la mano","Set completo transparente","Disponible para todos los modelos de iPhone"]},
+          zh:{extraAlt:"透明 My Melody 手机壳，粉色白波点背景", name:"My Melody 卡包手机壳", tag:"超级可爱 ♡", imgAlt:"粉色 My Melody 背面卡包手机壳", desc:"浪漫女孩的最爱：全粉配色、My Melody 大蝴蝶结，背面还有卡包，随身带卡超方便。", features:["背面一体卡包，可放银行卡或现金","摄像头高边保护，边框带装饰","可爱设计，轻盈好握","全清套","iPhone 全系列全型号"]},
+          en:{extraAlt:"Clear My Melody case on a pink background with white polka dots", name:"My Melody Case with Card Holder", tag:"Super cute ♡", imgAlt:"Pink My Melody case with back card holder", desc:"A romantic favorite: all pink, My Melody's giant bow, and a back card holder so your card is always with you.", features:["Built-in back card holder for your card or cash","Raised camera protection with decorated frame","Adorable design, light and comfy to hold","Full clear set","Available for all iPhone models"]}
         },
         {
-          id:"rilakkuma", tint:"#ffedd6", img:"../img/producto-rilakkuma.webp", pola:"../img/pola-rilakkuma.webp", extra:"../img/rilakkuma-lunares.webp", extraAlt:"Funda Rilakkuma naranja con ventana transparente sobre fondo rosa con lunares",
-          es:{name:"Funda Rilakkuma naranja", tag:"Estilo único ♡", imgAlt:"Funda naranja de Rilakkuma con lunares", desc:"El osito más relajado del mundo en un naranja vibrante con lunares. Imposible pasar desapercibida: pura alegría para tu iPhone.", features:["Color naranja intenso con lunares blancos","Cámara protegida con borde elevado y mini ositos decorativos","Diseño adorable, ligera y cómoda en la mano","Set completo transparente","Disponible para todos los modelos de iPhone"]},
-          zh:{name:"轻松熊橙色手机壳", tag:"独特风格 ♡", imgAlt:"橙色波点轻松熊手机壳", desc:"全世界最悠闲的小熊，配上亮眼橙色和波点。拿在手上绝不撞款，给你的 iPhone 满满快乐。", features:["亮橙色配白色波点","摄像头高边保护，带小熊装饰","可爱设计，轻盈好握","全清套","iPhone 全系列全型号"]},
-          en:{name:"Rilakkuma Orange Case", tag:"Unique style ♡", imgAlt:"Orange Rilakkuma case with polka dots", desc:"The world's most relaxed bear in vibrant orange with polka dots. Impossible to go unnoticed: pure joy for your iPhone.", features:["Bright orange with white polka dots","Raised camera protection with mini bear details","Adorable design, light and comfy to hold","Full clear set","Available for all iPhone models"]}
+          id:"rilakkuma", tint:"#ffedd6", img:"../img/producto-rilakkuma.webp", pola:"../img/pola-rilakkuma.webp", extra:"../img/rilakkuma-lunares.webp",
+          es:{extraAlt:"Funda Rilakkuma naranja con ventana transparente sobre fondo rosa con lunares", name:"Funda Rilakkuma naranja", tag:"Estilo único ♡", imgAlt:"Funda naranja de Rilakkuma con lunares", desc:"El osito más relajado del mundo en un naranja vibrante con lunares. Imposible pasar desapercibida: pura alegría para tu iPhone.", features:["Color naranja intenso con lunares blancos","Cámara protegida con borde elevado y mini ositos decorativos","Diseño adorable, ligera y cómoda en la mano","Set completo transparente","Disponible para todos los modelos de iPhone"]},
+          zh:{extraAlt:"橙色轻松熊手机壳，透明镜头窗，粉色波点背景", name:"轻松熊橙色手机壳", tag:"独特风格 ♡", imgAlt:"橙色波点轻松熊手机壳", desc:"全世界最悠闲的小熊，配上亮眼橙色和波点。拿在手上绝不撞款，给你的 iPhone 满满快乐。", features:["亮橙色配白色波点","摄像头高边保护，带小熊装饰","可爱设计，轻盈好握","全清套","iPhone 全系列全型号"]},
+          en:{extraAlt:"Orange Rilakkuma case with clear window on a pink polka-dot background", name:"Rilakkuma Orange Case", tag:"Unique style ♡", imgAlt:"Orange Rilakkuma case with polka dots", desc:"The world's most relaxed bear in vibrant orange with polka dots. Impossible to go unnoticed: pure joy for your iPhone.", features:["Bright orange with white polka dots","Raised camera protection with mini bear details","Adorable design, light and comfy to hold","Full clear set","Available for all iPhone models"]}
         },
         {
           id:"osamu", tint:"#e3f0ff", img:"../img/producto-osamu.webp", pola:"../img/pola-osamu.webp",
@@ -638,11 +640,11 @@
       var toastTimer = null;
       function $(s){ return document.querySelector(s); }
       function t(key){ return (I18N[currentLang] && I18N[currentLang][key]) || I18N.es[key] || key; }
-      function localizedProduct(raw){ var loc = raw[currentLang] || raw.es; return {id:raw.id, tint:raw.tint, img:raw.img, pola:raw.pola, extra:raw.extra, extraAlt:raw.extraAlt, name:loc.name, tag:loc.tag, imgAlt:loc.imgAlt, desc:loc.desc, features:loc.features}; }
+      function localizedProduct(raw){ var loc = raw[currentLang] || raw.es; return {id:raw.id, tint:raw.tint, img:raw.img, pola:raw.pola, extra:raw.extra, extraAlt:loc.extraAlt, name:loc.name, tag:loc.tag, imgAlt:loc.imgAlt, desc:loc.desc, features:loc.features}; }
       function productById(id){ for (var i=0;i<PRODUCTS_DATA.length;i++){ if (PRODUCTS_DATA[i].id===id) return localizedProduct(PRODUCTS_DATA[i]); } return null; }
       var PRICE=15;
       function cartQty(){ var n=0; for (var k in cart) n+=cart[k]; return n; }
-      function showToast(msg){ var el=$("#toast"); el.textContent=msg; el.classList.add("show"); clearTimeout(toastTimer); toastTimer=setTimeout(function(){ el.classList.remove("show"); },2600); }
+      function showToast(msg){ var el=$("#toast"); var cd=$("#cartDrawer"); el.classList.toggle("top", !!(cd && cd.classList.contains("open"))); el.textContent=msg; el.classList.add("show"); clearTimeout(toastTimer); toastTimer=setTimeout(function(){ el.classList.remove("show"); },2600); }
       function heartSvg(){ return '<svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 20.7C6 16.6 3 13.2 3 9.6 3 7 5 5 7.7 5c1.7 0 3.4.9 4.3 2.4C12.9 5.9 14.6 5 16.3 5 19 5 21 7 21 9.6c0 3.6-3 7-9 11.1z"/></svg>'; }
 
       function detectLang(){ try{ var q=(location.search.match(/[?&]lang=(es|zh|en)/)||[])[1]; if(q) return q; var s=localStorage.getItem("yaninaLang"); if(s==="es"||s==="zh"||s==="en") return s; }catch(e){} var L=(navigator.languages&&navigator.languages.length)?navigator.languages:[navigator.language||"es"]; for(var i=0;i<L.length;i++){ var c=String(L[i]).toLowerCase().slice(0,2); if(c==="es"||c==="zh"||c==="en") return c; } return "es"; }
@@ -671,8 +673,8 @@
       function openDetail(id){
         var p=productById(id); if(!p) return; detailId=id; detailQty=1;
         var feats=p.features.map(function(f){ return "<li>"+heartSvg()+"<span>"+f+"</span></li>"; }).join("");
-        var gal=[]; if(p.extra){gal.push([p.extra,p.extraAlt]);} gal.push([p.img,p.imgAlt]); gal.push([p.pola,"Foto de la funda en la mano"]);
-        $("#detailContent").innerHTML='<div><img class="modal-main-img" id="detailImg" src="'+gal[0][0]+'" alt="'+gal[0][1]+'" /><div class="thumbs">'+gal.map(function(g,k){return '<button'+(k===0?' class="sel"':'')+' data-thumb="'+g[0]+'" data-alt="'+g[1]+'"><img src="'+g[0]+'" alt="'+g[1]+'" decoding="async" /></button>';}).join('')+'</div></div><div class="modal-info"><span class="tag">'+p.tag+'</span><h2>'+p.name+'</h2><div class="price-row"><span class="price-chip">'+t("priceDetail")+'</span><span class="price-chip stock-chip">✓ '+t("stock")+'</span></div><p>'+p.desc+'</p><ul class="feat-list">'+feats+'</ul><div class="modal-actions"><span class="qty-picker"><button class="qty-btn" id="dqMinus">−</button><span class="qty-num" id="dqNum">1</span><button class="qty-btn" id="dqPlus">+</button></span><button class="btn btn-hot" id="dqAdd">'+t("addToCart")+'</button></div><div class="modal-actions"><a class="btn btn-white" href="#contacto" id="dqWhats">'+t("consultWhats")+'</a></div></div>';
+        var gal=[]; if(p.extra){gal.push([p.extra,p.extraAlt]);} gal.push([p.img,p.imgAlt]); gal.push([p.pola,t("polaAlt")]);
+        $("#detailContent").innerHTML='<div><img class="modal-main-img" id="detailImg" src="'+gal[0][0]+'" alt="'+gal[0][1]+'" /><div class="thumbs">'+gal.map(function(g,k){return '<button'+(k===0?' class="sel"':'')+' data-thumb="'+g[0]+'" data-alt="'+g[1]+'"><img src="'+g[0]+'" alt="'+g[1]+'" decoding="async" /></button>';}).join('')+'</div></div><div class="modal-info"><span class="tag">'+p.tag+'</span><h2>'+p.name+'</h2><div class="price-row"><span class="price-chip">'+t("priceDetail")+'</span><span class="price-chip stock-chip">✓ '+t("stock")+'</span></div><p>'+p.desc+'</p><ul class="feat-list">'+feats+'</ul><div class="modal-actions"><span class="qty-picker"><button class="qty-btn" id="dqMinus">−</button><span class="qty-num" id="dqNum">1</span><button class="qty-btn" id="dqPlus">+</button></span><button class="btn btn-hot" id="dqAdd">'+t("addToCart")+'</button></div><div class="modal-actions"><a class="btn btn-white" href="https://wa.me/593989022077?text='+encodeURIComponent(t("askMsg")+p.name)+'" target="_blank" rel="noopener" id="dqWhats">'+t("consultWhats")+'</a></div></div>';
         $("#detailModal").classList.add("open"); document.body.style.overflow="hidden";
         $("#detailContent").querySelectorAll("[data-thumb]").forEach(function(btn){ btn.addEventListener("click", function(){ $("#detailImg").src=btn.getAttribute("data-thumb"); $("#detailContent").querySelectorAll("[data-thumb]").forEach(function(b){ b.classList.remove("sel"); }); btn.classList.add("sel"); }); });
         $("#dqMinus").addEventListener("click", function(){ if(detailQty>1){ detailQty--; $("#dqNum").textContent=detailQty; } });
