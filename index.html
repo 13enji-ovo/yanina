@@ -301,6 +301,8 @@
         }
       };
 
+      function detectLang(){ try{ var q=(location.search.match(/[?&]lang=(es|zh|en)/)||[])[1]; if(q) return q; var s=localStorage.getItem("yaninaLang"); if(s==="es"||s==="zh"||s==="en") return s; }catch(e){} var L=(navigator.languages&&navigator.languages.length)?navigator.languages:[navigator.language||"es"]; for(var i=0;i<L.length;i++){ var c=String(L[i]).toLowerCase().slice(0,2); if(c==="es"||c==="zh"||c==="en") return c; } return "es"; }
+      function saveLang(l){ try{ localStorage.setItem("yaninaLang", l); }catch(e){} }
       function setLang(lang) {
         var dict = I18N[lang] || I18N.es;
         document.documentElement.lang = dict.htmlLang;
@@ -318,9 +320,10 @@
       var switchButtons = document.querySelectorAll(".lang-switch button");
       for (var k = 0; k < switchButtons.length; k++) {
         switchButtons[k].addEventListener("click", function () {
-          setLang(this.getAttribute("data-lang"));
+          var l=this.getAttribute("data-lang"); saveLang(l); setLang(l);
         });
       }
+      setLang(detectLang());
     </script>
   </body>
 </html>

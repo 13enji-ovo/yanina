@@ -645,6 +645,8 @@
       function showToast(msg){ var el=$("#toast"); el.textContent=msg; el.classList.add("show"); clearTimeout(toastTimer); toastTimer=setTimeout(function(){ el.classList.remove("show"); },2600); }
       function heartSvg(){ return '<svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 20.7C6 16.6 3 13.2 3 9.6 3 7 5 5 7.7 5c1.7 0 3.4.9 4.3 2.4C12.9 5.9 14.6 5 16.3 5 19 5 21 7 21 9.6c0 3.6-3 7-9 11.1z"/></svg>'; }
 
+      function detectLang(){ try{ var q=(location.search.match(/[?&]lang=(es|zh|en)/)||[])[1]; if(q) return q; var s=localStorage.getItem("yaninaLang"); if(s==="es"||s==="zh"||s==="en") return s; }catch(e){} var L=(navigator.languages&&navigator.languages.length)?navigator.languages:[navigator.language||"es"]; for(var i=0;i<L.length;i++){ var c=String(L[i]).toLowerCase().slice(0,2); if(c==="es"||c==="zh"||c==="en") return c; } return "es"; }
+      function saveLang(l){ try{ localStorage.setItem("yaninaLang", l); }catch(e){} }
       function applyLang(lang){
         if (!I18N[lang]) lang="es";
         currentLang=lang;
@@ -696,8 +698,8 @@
       function fallbackCopy(text){ var ta=document.createElement("textarea"); ta.value=text; ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select(); try{ document.execCommand("copy"); }catch(e){} document.body.removeChild(ta); }
 
       document.addEventListener("DOMContentLoaded", function(){
-        renderProducts(); renderCart();
-        document.querySelectorAll(".lang-btn").forEach(function(b){ b.addEventListener("click", function(){ applyLang(b.getAttribute("data-lang")); }); });
+        var startLang=detectLang(); if(startLang!=="es"){ applyLang(startLang); } else { renderProducts(); renderCart(); }
+        document.querySelectorAll(".lang-btn").forEach(function(b){ b.addEventListener("click", function(){ var l=b.getAttribute("data-lang"); saveLang(l); applyLang(l); }); });
         var grid=$("#productGrid");
         grid.addEventListener("click", function(e){ var d=e.target.closest("[data-detail]"); var a=e.target.closest("[data-add]"); if(d) openDetail(d.getAttribute("data-detail")); if(a) addToCart(a.getAttribute("data-add"),1); });
         $("#openCart").addEventListener("click", openCart);
